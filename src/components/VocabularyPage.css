@@ -1,0 +1,120 @@
+/* src/components/VocabularyPage.css */
+
+.vocabulary-page {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .app-icon {
+    width: 100px; /* Set a fixed width */
+    height: 100px; /* Maintain aspect ratio */
+    display: block;
+    margin: 0 auto; /* Center the image */
+  }
+
+
+  /* Sidebar */
+  .sidebar {
+    width: 20%;
+    background-color: #f0f0f0;
+    padding: 20px;
+  }
+
+  .recommend-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+
+  .review-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+  
+  .profile {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .profile-img {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .menu-list {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  /* Menu Button Styling */
+  .menu-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+  
+  .menu-button:hover {
+    background-color: #e0e0e0; /* Slightly darker on hover */
+  }
+  
+  .menu-button:active {
+    background-color: #cccccc; /* Darker when clicked */
+  }
+  
+  /* Main Content */
+  .main-content {
+    width: calc(100% - 20%);
+  }
+  
+  .top-buttons {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .top-buttons button {
+    margin-right: 10px;
+  }
+  
+  /* Word Display Section */
+  .word-display-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .arrow {
+     font-size :2rem ;
+     cursor : pointer ;
+     margin :0px10 px ;
+  }
+  
+  .word-display {
+    background-color: #90ee90;
+    padding: 40px;
+    margin: 100px;
+    text-align: center;
+    border-radius: 12px; /* Fixed the spacing */
+    width: 800px; /* Fixed the spacing */
+    min-height: 200px; /* Fixed the spacing */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Fixed the spacing */
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center text vertically inside the card */
+}
