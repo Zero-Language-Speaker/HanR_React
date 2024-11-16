@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import icon from './icon.png';
-import ScenarioChatBot from './ScenarioChatBot';
 import './VocabularyPage.css';
 
 const VocabularyPage = () => {
@@ -56,53 +54,9 @@ const VocabularyPage = () => {
     setShowChatBot(!showChatBot);
   };
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    // Here you would typically send a request to your server to authenticate
-    // For this example, we'll just simulate a successful login
-    if (username && password) {
-      setIsLoggedIn(true);
-    } else {
-      alert('Please enter both username and password');
-    }
-  };
-
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-    setUsername('');
-    setPassword('');
-  };
-
-
   return (
+    
     <div className="vocabulary-page">
-
-      {/* Sidebar */}
-      <aside className="sidebar">
-
-        <img src={icon} alt="App Icon" className="app-icon" />
-
-        <ul className="menu-list">
-          {/* Wrap each menu item in a button */}
-          <li>
-            <button className="menu-button">단어 학습</button>
-          </li>
-          <li>
-            <button className="menu-button" onClick={toggleChatBot}>시나리오 학습</button>
-          </li>
-          <li>
-            <button className="menu-button">문맥 학습</button>
-          </li>
-          <li>
-            <Link to="/word-list">
-              <button className="menu-button">단어장 이동</button>
-            </Link>
-          </li>
-          <li>
-            <button className="menu-button">Menu Label</button>
-          </li>
-        </ul>
-      </aside>
 
       {/* Main Content */}
       <main className="main-content">
@@ -114,6 +68,7 @@ const VocabularyPage = () => {
 
         {/* Word Display Section with Scroll Buttons */}
         <div className="word-display-section">
+          
           {/* Left Arrow */}
           <button className="arrow left-arrow" onClick={prevWord}>←</button>
 
@@ -134,35 +89,9 @@ const VocabularyPage = () => {
         {/* Bottom Placeholder (for future use) */}
         <div className="bottom-placeholder"></div>
 
-        {showChatBot && <ScenarioChatBot />}
-
       </main>
 
       {/* User Profile Section */}
-      <div className="user-profile">
-        {isLoggedIn ? (
-          <div>
-            <span>Welcome, {username}!</span>
-            <button onClick={handleLogout}>Logout</button>
-          </div>
-        ) : (
-          <form onSubmit={handleLogin}>
-            <input
-              type="text"
-              placeholder="Username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <button type="submit">Login</button>
-          </form>
-        )}
-      </div>
     </div>
   );
 };

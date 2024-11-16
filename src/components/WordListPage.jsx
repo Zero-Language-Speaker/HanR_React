@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import icon from './icon.png';
 import axios from 'axios';
 import './WordListPage.css';
 
@@ -49,10 +47,6 @@ const WordListPage = () => {
   };
 
   return (
-
-    
-
-    
     <div className="word-list-page">
       <h2>단어 목록</h2>
 

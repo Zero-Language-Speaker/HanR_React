@@ -1,120 +1,101 @@
-/* src/components/VocabularyPage.css */
-
+/* Main layout */
 .vocabulary-page {
-    display: flex;
-    height: 100vh;
-  }
-  
-  .app-icon {
-    width: 100px; /* Set a fixed width */
-    height: 100px; /* Maintain aspect ratio */
-    display: block;
-    margin: 0 auto; /* Center the image */
-  }
+  display: flex;
+  height: 100vh;
+  width: 80%;
+  overflow-x: hidden; /* Prevent horizontal scrollbar */
+}
 
+/* Main Content */
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden; /* Prevent horizontal scrollbar */
+}
 
-  /* Sidebar */
-  .sidebar {
-    width: 20%;
-    background-color: #f0f0f0;
+/* Top Buttons */
+.top-buttons {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  margin-bottom: 20px;
+  gap: 20px;
+}
+
+.vocabulary-page .top-buttons button{
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color:#909eee;
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.top-buttons button:hover {
+  background-color: rgb(105, 118, 179); /* Slightly darker shade on hover */
+}
+
+/* Word Display Section */
+.word-display-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 800px; /* Limit maximum width */
+}
+
+.arrow {
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 10px;
+  background: none;
+  border: none;
+  color: #333;
+  flex-shrink: 0; /* Prevent arrows from shrinking */
+}
+
+.word-display {
+  background-color: #909eee;
+  padding: 40px;
+  margin: 0 10px;
+  text-align: center;
+  border-radius: 12px;
+  width: 90%; /* Fixed width */
+  min-height: 200px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 0; /* Prevent card from shrinking */
+  overflow-wrap: break-word; /* Allow long words to break */
+  word-wrap: break-word; /* Legacy support for older browsers */
+  word-break: break-word; /* Allow breaking of non-CJK text */
+}
+
+.word-display h3,
+.word-display p {
+  max-width: 100%; /* Ensure content doesn't exceed container width */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .word-display {
+    width: 300px; /* Smaller width for mobile devices */
     padding: 20px;
-  }
-
-  .recommend-btn {
-    width: 100%;
-    padding: 10px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    border: none;
-    box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
-    font-size: 16px;
-    margin-bottom: 15px;
-  }
-
-  .review-btn {
-    width: 100%;
-    padding: 10px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    border: none;
-    box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
-    font-size: 16px;
-    margin-bottom: 15px;
-  }
-  
-  .profile {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .profile-img {
-    width: 50px;
-    height: 50px;
-  }
-  
-  .menu-list {
-    list-style-type: none;
-    padding-left: 0;
-  }
-  
-  /* Menu Button Styling */
-  .menu-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    border: none;
-    box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
-    font-size: 16px;
-    margin-bottom: 15px;
-  }
-  
-  .menu-button:hover {
-    background-color: #e0e0e0; /* Slightly darker on hover */
-  }
-  
-  .menu-button:active {
-    background-color: #cccccc; /* Darker when clicked */
-  }
-  
-  /* Main Content */
-  .main-content {
-    width: calc(100% - 20%);
-  }
-  
-  .top-buttons {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .top-buttons button {
-    margin-right: 10px;
-  }
-  
-  /* Word Display Section */
-  .word-display-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
   
   .arrow {
-     font-size :2rem ;
-     cursor : pointer ;
-     margin :0px10 px ;
+    font-size: 1.5rem;
   }
-  
-  .word-display {
-    background-color: #90ee90;
-    padding: 40px;
-    margin: 100px;
-    text-align: center;
-    border-radius: 12px; /* Fixed the spacing */
-    width: 800px; /* Fixed the spacing */
-    min-height: 200px; /* Fixed the spacing */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Fixed the spacing */
-    color: #333;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Center text vertically inside the card */
 }

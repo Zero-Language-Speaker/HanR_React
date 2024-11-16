@@ -1,4 +1,4 @@
-// chatbotConfig.js
+// Config.jsx
 import { createChatBotMessage } from 'react-chatbot-kit';
 
 const config = {
@@ -12,6 +12,7 @@ const config = {
       backgroundColor: "#5ccc9d",
     },
   },
+  // Remove the customComponents section if it's not needed for other purposes
 };
 
 export default config;
