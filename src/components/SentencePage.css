@@ -81,6 +81,24 @@
   .sentence-translation {
     font-style: italic;
   }
+
+
+  .clickable-word {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  
+  .clickable-word:hover {
+    color: #007bff;
+  }
+  
+  .word-info {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+  }
   
   @media (max-width: 768px) {
     .sentence-display {

@@ -78,6 +78,7 @@
   overflow-wrap: break-word; /* Allow long words to break */
   word-wrap: break-word; /* Legacy support for older browsers */
   word-break: break-word; /* Allow breaking of non-CJK text */
+  font-size: 30px;
 }
 
 .word-display h3,

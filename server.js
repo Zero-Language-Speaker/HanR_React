@@ -9,10 +9,13 @@ const PORT = process.env.PORT || 3001;
 // Path to words.json in the root of your project folder
 const wordsFilePath = path.join(__dirname, 'words.json');
 
+const sentencesFilePath = path.join(__dirname, 'sentences.json');
+
 app.use(cors({
   origin: 'http://localhost:3000', // Replace with your React app's URL
   credentials: true
 }));
+
 app.use(express.json());
 
 app.get('/', (req, res) => {
@@ -53,6 +56,31 @@ app.post('/api/words', async (req, res) => {
   } catch (error) {
     console.error('Error adding word:', error);
     res.status(500).json({ error: 'Error adding word', details: error.message });
+  }
+});
+
+app.get('/api/sentences', async (req, res) => {
+  try {
+    const data = await fs.readFile(sentencesFilePath, 'utf8');
+    const sentences = JSON.parse(data);
+    res.json(sentences);
+  } catch (error) {
+    console.error('Error reading sentences:', error);
+    res.status(500).json({ error: 'Error reading sentences' });
+  }
+});
+
+app.post('/api/sentences', async (req, res) => {
+  try {
+    const newSentence = req.body;
+    const data = await fs.readFile(sentencesFilePath, 'utf8');
+    const sentences = JSON.parse(data);
+    sentences.push(newSentence);
+    await fs.writeFile(sentencesFilePath, JSON.stringify(sentences, null, 2));
+    res.status(201).json(newSentence);
+  } catch (error) {
+    console.error('Error adding sentence:', error);
+    res.status(500).json({ error: 'Error adding sentence' });
   }
 });
 
