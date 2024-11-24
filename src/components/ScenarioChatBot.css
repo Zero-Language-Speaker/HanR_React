@@ -14,10 +14,10 @@
   .scenario-chatbot-window {
     background-color: rgb(255, 255, 255);
     border-radius: 8px;
-    width: 80%;
-    max-width: 500px;
+    width: 90%;
+    max-width: 1200px;
     height: 80%;
-    max-height: 600px;
+    max-height: 800px;
     display: flex;
     flex-direction: column;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -27,7 +27,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    padding: 10px 10px;
     border-bottom: 1px solid #e0e0e0;
   }
   
@@ -38,13 +38,13 @@
   .scenario-chatbot-header button {
     background: none;
     border: none;
-    font-size: 16px;
+    font-size: 20px;
     cursor: pointer;
   }
   
   .scenario-chatbot-content {
     flex: 1;
-    overflow-y: auto;
+    overflow-y: hidden; /* 스크롤바 제거 */
   }
   
   /* Adjust react-chatbot-kit styles */
@@ -68,6 +68,17 @@
     display: flex;
     justify-content: flex-start;
     margin-bottom: 10px;
+    font-size: 16px;
+  }
+
+  .react-chatbot-kit-chat-bot-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
   }
   
   .react-chatbot-kit-chat-bot-avatar-container {
@@ -78,8 +89,12 @@
     background-color: #e0e0e0;
     padding: 15px;
     border-radius: 10px 10px 10px 0;
-    max-width: 70%;
     align-self: flex-start;
+    font-size: 16px; /* 챗봇 폰트 사이즈 조절 */
+    max-width: 90% !important;
+    min-width: 51%;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
   }
   
   /* User message styles */
@@ -88,6 +103,9 @@
     justify-content: flex-end;
     margin-bottom: 10px;
     position: relative; /* Add this */
+    font-size: 16px; /* 유저 폰트 사이즈 조절 */
+    max-width: 90%;
+    min-width: 80%;
   }
   
   .react-chatbot-kit-user-chat-message {
@@ -121,6 +139,7 @@
     align-items: flex-start !important;
     margin-bottom: 10px !important;
     padding-left: 0 !important;
+    gap: 10px !important; /* 봇 아이콘과 말풍선 여백 */
   }
   
   .react-chatbot-kit-chat-bot-avatar-container {
@@ -129,7 +148,7 @@
   
   .react-chatbot-kit-chat-bot-message {
     margin-left: 0 !important;
-    max-width: calc(70% - 35px) !important;
+    /* max-width: calc(70% - 35px) !important; */
   }
 
   /* 챗봇 UI 헤더 텍스트 숨기고 싶다면

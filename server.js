@@ -108,6 +108,22 @@ app.delete('/api/words/:id', async (req, res) => {
   }
 });
 
+
+
+app.get('/api/random-word', async (req, res) => {
+  try {
+    const data = await fs.readFile(path.join(__dirname, 'words.json'), 'utf8');
+    const words = JSON.parse(data);
+    const randomWord = words[Math.floor(Math.random() * words.length)];
+    res.json(randomWord);
+  } catch (error) {
+    console.error('Error reading words.json:', error);
+    res.status(500).json({ error: 'Failed to fetch random word' });
+  }
+});
+
+
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

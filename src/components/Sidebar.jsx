@@ -13,14 +13,16 @@ const Sidebar = ({ toggleChatBot, showChatBot }) => {
 
       <ul className="menu-list">
         <li>
-          <button className="menu-button">단어 학습</button>
+          <Link to="/word-learning">
+            <button className="menu-button">단어 학습</button>
+          </Link>
         </li>
         <li>
         <button 
             className={`menu-button ${showChatBot ? 'active' : ''}`}
             onClick={toggleChatBot}
           >
-            시나리오 학습
+            챗봇 호출
           </button>
         </li>
         <li>

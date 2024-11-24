@@ -9,6 +9,8 @@ const SentencePage = () => {
   const [error, setError] = useState(null);
   const [newSentence, setNewSentence] = useState({ text: '', translation: '' });
   const [clickedWord, setClickedWord] = useState(null);
+  const [addedWords, setAddedWords] = useState(new Set());
+  const [showFeedback, setShowFeedback] = useState(false);
 
   useEffect(() => {
     fetchSentences();
@@ -65,6 +67,29 @@ const SentencePage = () => {
     });
   };
 
+  const handleAddWord = async () => {
+    if (!clickedWord) return;
+  
+    try {
+      const response = await axios.post('http://localhost:3001/api/words', {
+        word: clickedWord.word,
+        meaning: 'Placeholder meaning'
+      });
+      console.log('Word added successfully:', response.data);
+      setAddedWords(prev => new Set(prev).add(clickedWord.word));
+      setClickedWord(null);
+      setShowFeedback(true);
+      setTimeout(() => setShowFeedback(false), 3000); // Hide after 3 seconds
+    } catch (error) {
+      console.error('Error adding word:', error);
+    }
+  };
+  const handleCloseWordInfo = () => {
+    setClickedWord(null);
+  };
+
+
+
   return (
     <div className="sentence-page">
       <main className="main-content">
@@ -74,53 +99,59 @@ const SentencePage = () => {
         </div>
 
         <div className="sentence-display-section">
-          <button className="arrow left-arrow" onClick={prevSentence}>←</button>
-          
-          {isLoading ? (
-            <p>Loading...</p>
-          ) : sentences.length > 0 ? (
-            <div className="sentence-display">
-              <p className="sentence-text">
-                {sentences[currentIndex].text.split(' ').map((word, index) => (
-                  <span 
-                    key={index} 
-                    className="clickable-word" 
-                    onClick={() => handleWordClick(word)}
-                  >
-                    {word}{' '}
-                  </span>
-                ))}
-              </p>
-              <p className="sentence-translation">{sentences[currentIndex].translation}</p>
-            </div>
-          ) : (
-            <p>No sentences available.</p>
-          )}
-          
-          <button className="arrow right-arrow" onClick={nextSentence}>→</button>
-        </div>
-
-        {clickedWord && (
-          <div className="word-info">
-            <h3>{clickedWord.word}</h3>
-            <p>{clickedWord.info}</p>
+        <button className="arrow left-arrow" onClick={prevSentence}>←</button>
+        
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : sentences.length > 0 && sentences[currentIndex] ? (
+          <div className="sentence-display">
+            <p className="sentence-text">
+              {sentences[currentIndex].text.split(' ').map((word, index) => (
+                <span 
+                  key={index} 
+                  onClick={() => handleWordClick(word)}
+                  className={`clickable-word ${addedWords.has(word) ? 'added-word' : ''}`}
+                >
+                  {word}
+                </span>
+              ))}
+            </p>
+            <p className="sentence-translation">{sentences[currentIndex].translation}</p>
           </div>
+        ) : (
+          <p>No sentences available.</p>
         )}
+        
+        <button className="arrow right-arrow" onClick={nextSentence}>→</button>
+      </div>
 
+      {clickedWord && (
+        <div className="word-info">
+          <button className="close-btn" onClick={handleCloseWordInfo}>&times;</button>
+          <h3>{clickedWord.word}</h3>
+          <p>{clickedWord.info}</p>
+          <button className="add-word-btn" onClick={handleAddWord}>단어장에 추가하기</button>
+        </div>
+      )}
+      {showFeedback && (
+        <div className="feedback-message">
+          단어장에 추가되었습니다
+        </div>
+      )}
         <div className="add-sentence-form">
           <input
             type="text"
             value={newSentence.text}
             onChange={(e) => setNewSentence({...newSentence, text: e.target.value})}
-            placeholder="Enter sentence"
+            placeholder="문장 입력"
           />
           <input
             type="text"
             value={newSentence.translation}
             onChange={(e) => setNewSentence({...newSentence, translation: e.target.value})}
-            placeholder="Enter translation"
+            placeholder="뜻 입력"
           />
-          <button onClick={addSentence}>Add Sentence</button>
+          <button onClick={addSentence}>문장 추가하기</button>
         </div>
       </main>
     </div>

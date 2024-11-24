@@ -4,6 +4,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './components/AuthContext';
 
 import Sidebar from './components/Sidebar';
+import WordLearningPage from './components/WordLearningPage';
 import VocabularyPage from './components/VocabularyPage';
 import SentencePage from './components/SentencePage';
 import WordListPage from './components/WordListPage';
@@ -24,6 +25,7 @@ const App = () => {
       <main className="main-content">
         <Routes>
           <Route path="/" element={<VocabularyPage />} />
+          <Route path="/word-learning" element={<WordLearningPage />} />
           <Route path="/sentences" element={<SentencePage />} />
           <Route path="/word-list" element={<WordListPage />} />
         </Routes>

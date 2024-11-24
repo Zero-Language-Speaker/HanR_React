@@ -12,7 +12,7 @@ const ScenarioChatBot = ({ onClose }) => {
     <div className="scenario-chatbot-overlay">
       <div className="scenario-chatbot-window">
         <div className="scenario-chatbot-header">
-          <h2>시나리오 학습 AI</h2>
+          <h2>한글한알 AI Chat</h2>
           <button onClick={onClose}>Close</button>
         </div>
         <div className="scenario-chatbot-content">
