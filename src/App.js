@@ -21,7 +21,12 @@ const App = () => {
 
   return (
     <div className="app">
+      
+      
+      
       <Sidebar toggleChatBot={toggleChatBot} showChatBot={showChatBot} />
+      
+
       <main className="main-content">
         <Routes>
           <Route path="/" element={<VocabularyPage />} />
