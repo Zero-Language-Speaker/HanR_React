@@ -17,7 +17,7 @@ const ScenarioChatBot = ({ onClose, userInput, actionProviderRef }) => {
         </div>
         <div className="scenario-chatbot-content">
           <Chatbot
-            config={config}
+            config={config(userInput)}
             messageParser={MessageParser}
             actionProvider={ActionProvider}
             headerText="한글한알 AI와 어휘력을 길러 보세요"

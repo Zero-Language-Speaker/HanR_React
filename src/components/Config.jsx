@@ -3,10 +3,13 @@ import { createChatBotMessage } from "react-chatbot-kit";
 import botIcon from './ChatBot.png';
 import LearningMission from "./LearningMission";
 
-const config = {
-  initialMessages: [createChatBotMessage(`Hello! I'm here to help with your learning missions.`)],
+const config = (initialWord) => ({
+  initialMessages: [createChatBotMessage(
+    initialWord
+    ? `'${initialWord}'에 대해 알아봅시다!`
+    : `Hello! I'm here to help with your learning missions.`)],
   state: {
-    currentMission: null,
+    currentMission: initialWord || null,
   },
   widgets: [],
   customMessages: {
@@ -36,6 +39,6 @@ const config = {
       backgroundColor: "#5ccc9d",
     },
   },
-};
+});
 
 export default config;
