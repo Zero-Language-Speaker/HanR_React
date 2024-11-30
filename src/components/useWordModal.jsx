@@ -5,6 +5,7 @@ export const useWordModal = () => {
   const [selectedWord, setSelectedWord] = useState(null);
 
   const openModal = (word) => {
+    console.log('Opening modal with word:', word);
     setSelectedWord(word);
     setIsModalOpen(true);
   };

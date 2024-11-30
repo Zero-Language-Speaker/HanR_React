@@ -1,7 +1,11 @@
 import React from 'react';
 import './WordModal.css';
+import { useLearningMission } from './LearningMissionContext';
 
-const WordModal = ({ isOpen, word, meanings, onClose, onLearningMission }) => {
+const WordModal = ({ isOpen, word, meanings, onClose, onStartLearningMission }) => {
+
+  //const onStartLearningMission = useLearningMission();
+
   if (!isOpen) return null;
 
   return (
@@ -11,23 +15,16 @@ const WordModal = ({ isOpen, word, meanings, onClose, onLearningMission }) => {
         {meanings.map((meaning, index) => (
           <div key={index} className="meaning-section">
             <h3>Definition {index + 1}:</h3>
-
             <p>{meaning.definition}</p>
-
-            <button onClick={() => onLearningMission(word, meaning.definition)}>
-                    Learning Mission
-                  </button>
-
-
             <h4>Examples:</h4>
             <ul>
               {meaning.examples.map((example, exIndex) => (
-                <li key={exIndex}>
-                  {example}
-
-                </li>
+                <li key={exIndex}>{example}</li>
               ))}
             </ul>
+            <button onClick={() => onStartLearningMission(word)}>
+              Start Learning Mission
+            </button>
           </div>
         ))}
         <button onClick={onClose}>Close</button>

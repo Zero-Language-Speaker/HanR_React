@@ -3,12 +3,32 @@ import axios from 'axios';
 import './WordListPage.css';
 import { useWordModal } from './useWordModal';
 import WordModal from './WordModal';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useLearningMission } from './LearningMissionContext';
+import Chatbot from 'react-chatbot-kit';
 
-const WordListPage = ({ setChatbotInput }) => {
+const WordListPage = () => {
+
+  const onStartLearningMission = useLearningMission();
+  const navigate = useNavigate();
+  const location = useLocation();
+  console.log('Location state:', location.state);
+
   const [words, setWords] = useState([]);
   const [newWord, setNewWord] = useState('');
   const [newMeanings, setNewMeanings] = useState([{ definition: '', examples: [''] }]);
   const { isModalOpen, selectedWord, openModal, closeModal, updateSelectedWord } = useWordModal();
+  const [chatbotInput, setChatbotInput] = useState('');
+
+  const handleStartLearningMission = (word) => {
+    console.log('handleStartLearningMission called in WordListPage', word);
+    if (typeof onStartLearningMission === 'function') {
+      onStartLearningMission(word);
+    } else {
+      console.error('onStartLearningMission is not a function', onStartLearningMission);
+    }
+    closeModal();
+  };
 
   useEffect(() => {
     fetchWords();
@@ -102,6 +122,8 @@ const WordListPage = ({ setChatbotInput }) => {
 
   const handleLearningMission = (word, definition, example) => {
     const missionInput = `Learning mission for "${word}": Definition: ${definition}, Example: ${example}`;
+    console.log('Setting chatbot input:', word);
+
     setChatbotInput(missionInput);
     closeModal();
   };
@@ -144,7 +166,7 @@ const WordListPage = ({ setChatbotInput }) => {
         word={selectedWord?.word}
         meanings={selectedWord?.meanings || []}
         onClose={closeModal}
-        onLearningMission={handleLearningMission}
+        onStartLearningMission={onStartLearningMission}
       />
 
       <div className="word-card-container">

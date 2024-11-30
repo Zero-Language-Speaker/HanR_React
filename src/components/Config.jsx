@@ -1,8 +1,18 @@
 // Config.jsx
 import { createChatBotMessage } from "react-chatbot-kit";
 import botIcon from './ChatBot.png';
+import LearningMission from "./LearningMission";
 
 const config = {
+  initialMessages: [createChatBotMessage(`Hello! I'm here to help with your learning missions.`)],
+  state: {
+    currentMission: null,
+  },
+  widgets: [],
+  customMessages: {
+    learning_mission: (props) => <LearningMission {...props} />,
+  },
+
 
   customComponents: {
     botAvatar: (props) => (
@@ -16,9 +26,6 @@ const config = {
     ),
   },
 
-  initialMessages: [
-    createChatBotMessage("안녕하세요! 단어 학습을 시작하려면 '시작'이라고 입력해주세요."),
-  ],
   
   botName: "ScenarioBot",
   customStyles: {
