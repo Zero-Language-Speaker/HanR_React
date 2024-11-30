@@ -126,6 +126,22 @@ app.get('/api/random-word', async (req, res) => {
   }
 });
 
+app.post('/api/mission', async (req, res) => {
+  res.status(200).json({
+    mission_type: 0,
+    mission: `Dummy mission for ${req.body.word}`,
+    example_answer: `Dummy example answer. Definition: ${req.body.meaning}`
+  });
+});
+
+app.post('/api/feedback', async (req, res) => {
+  res.status(200).json({
+    score: 5,
+    score_reason: "mission",
+    message: `Dummy feedback for ${req.body.user_input}`
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

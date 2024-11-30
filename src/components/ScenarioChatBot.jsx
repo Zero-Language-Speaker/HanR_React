@@ -1,13 +1,17 @@
 // ScenarioChatBot.jsx
-import React from 'react';
-import Chatbot from 'react-chatbot-kit';
+import React, { useState, useEffect } from 'react';
+import Chatbot, { createChatBotMessage } from 'react-chatbot-kit';
 import 'react-chatbot-kit/build/main.css';
 import config from './Config';
 import MessageParser from './MessageParser';
 import ActionProvider from './ActionProvider';
 import './ScenarioChatBot.css';
+import axios from 'axios';
+import botIcon from './ChatBot.png';
 
-const ScenarioChatBot = ({ onClose, userInput, actionProviderRef }) => {
+
+const ScenarioChatBot = ({ onClose, chatContext, userInput}) => {
+
   return (
     <div className="scenario-chatbot-overlay">
       <div className="scenario-chatbot-window">
@@ -17,12 +21,11 @@ const ScenarioChatBot = ({ onClose, userInput, actionProviderRef }) => {
         </div>
         <div className="scenario-chatbot-content">
           <Chatbot
-            config={config(userInput)}
+            config={config(chatContext)}
             messageParser={MessageParser}
             actionProvider={ActionProvider}
             headerText="한글한알 AI와 어휘력을 길러 보세요"
             userInput={userInput}
-            actionProviderRef={actionProviderRef}
           />
         </div>
       </div>

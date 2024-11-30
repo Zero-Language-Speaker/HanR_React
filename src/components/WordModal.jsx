@@ -22,7 +22,7 @@ const WordModal = ({ isOpen, word, meanings, onClose, onStartLearningMission }) 
                 <li key={exIndex}>{example}</li>
               ))}
             </ul>
-            <button onClick={() => onStartLearningMission(word)}>
+            <button onClick={() => onStartLearningMission(word, meaning)}>
               Start Learning Mission
             </button>
           </div>
