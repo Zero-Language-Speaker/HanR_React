@@ -6,13 +6,11 @@ const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Path to words.json in the root of your project folder
 const wordsFilePath = path.join(__dirname, 'words.json');
-
 const sentencesFilePath = path.join(__dirname, 'sentences.json');
 
 app.use(cors({
-  origin: 'http://localhost:3000', // Replace with your React app's URL
+  origin: 'http://localhost:3000',
   credentials: true
 }));
 
@@ -36,17 +34,19 @@ app.get('/api/words', async (req, res) => {
 // POST /api/words
 app.post('/api/words', async (req, res) => {
   try {
-    const { word, meaning } = req.body;
+    const { word, meanings } = req.body;
     const data = await fs.readFile(wordsFilePath, 'utf8');
     const words = JSON.parse(data);
     
-    // Determine the next ID by finding the maximum ID and adding 1
     const newId = words.length > 0 ? Math.max(...words.map(w => w.id)) + 1 : 1;
     
     const newWord = {
       id: newId,
-      word,
-      meaning
+      word: word,
+      meanings: meanings.map(meaning => ({
+        definition: meaning.definition,
+        examples: meaning.examples || []
+      }))
     };
     
     words.push(newWord);
@@ -59,30 +59,38 @@ app.post('/api/words', async (req, res) => {
   }
 });
 
-app.get('/api/sentences', async (req, res) => {
+
+// PUT /api/words/:id
+app.put('/api/words/:id', async (req, res) => {
+  const id = parseInt(req.params.id);
+  const { word, meanings } = req.body;
+
   try {
-    const data = await fs.readFile(sentencesFilePath, 'utf8');
-    const sentences = JSON.parse(data);
-    res.json(sentences);
+    const data = await fs.readFile(wordsFilePath, 'utf8');
+    let words = JSON.parse(data);
+    
+    const wordIndex = words.findIndex(w => w.id === id);
+    
+    if (wordIndex === -1) {
+      return res.status(404).json({ error: 'Word not found' });
+    }
+
+    // Update the word
+    words[wordIndex] = {
+      ...words[wordIndex],
+      word,
+      meanings
+    };
+
+    await fs.writeFile(wordsFilePath, JSON.stringify(words, null, 2));
+    
+    res.json(words[wordIndex]);
   } catch (error) {
-    console.error('Error reading sentences:', error);
-    res.status(500).json({ error: 'Error reading sentences' });
+    console.error('Error updating word:', error);
+    res.status(500).json({ error: 'Error updating word', details: error.message });
   }
 });
 
-app.post('/api/sentences', async (req, res) => {
-  try {
-    const newSentence = req.body;
-    const data = await fs.readFile(sentencesFilePath, 'utf8');
-    const sentences = JSON.parse(data);
-    sentences.push(newSentence);
-    await fs.writeFile(sentencesFilePath, JSON.stringify(sentences, null, 2));
-    res.status(201).json(newSentence);
-  } catch (error) {
-    console.error('Error adding sentence:', error);
-    res.status(500).json({ error: 'Error adding sentence' });
-  }
-});
 
 // DELETE /api/words/:id
 app.delete('/api/words/:id', async (req, res) => {
@@ -91,10 +99,8 @@ app.delete('/api/words/:id', async (req, res) => {
     const data = await fs.readFile(wordsFilePath, 'utf8');
     let words = JSON.parse(data);
     
-    // Filter out the word to delete
     words = words.filter(word => word.id !== id);
     
-    // Reassign IDs to ensure they are consecutive
     words.forEach((word, index) => {
       word.id = index + 1;
     });
@@ -108,11 +114,9 @@ app.delete('/api/words/:id', async (req, res) => {
   }
 });
 
-
-
 app.get('/api/random-word', async (req, res) => {
   try {
-    const data = await fs.readFile(path.join(__dirname, 'words.json'), 'utf8');
+    const data = await fs.readFile(wordsFilePath, 'utf8');
     const words = JSON.parse(data);
     const randomWord = words[Math.floor(Math.random() * words.length)];
     res.json(randomWord);
@@ -121,8 +125,6 @@ app.get('/api/random-word', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch random word' });
   }
 });
-
-
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

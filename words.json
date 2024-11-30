@@ -1,32 +1,64 @@
 [
   {
     "id": 1,
-    "word": "영달",
-    "meaning": "지위가 높고 귀하게 됨"
+    "word": "example",
+    "meanings": [
+      {
+        "definition": "A representative form or pattern",
+        "examples": [
+          "This is an example of a great response.",
+          "Such examples are useful."
+        ]
+      },
+      {
+        "definition": "A typical instance",
+        "examples": [
+          "For example, a sentence can serve as an example."
+        ]
+      }
+    ]
   },
   {
     "id": 2,
-    "word": "사변적",
-    "meaning": "경험에 의하지 않고 순수한 이성에 의하여 인식하고 설명하는 것"
+    "word": "another",
+    "meanings": [
+      {
+        "definition": "One more; an additional",
+        "examples": [
+          "Would you like another piece of cake?",
+          "We need another volunteer for the project."
+        ]
+      },
+      {
+        "definition": "333",
+        "examples": [
+          "444"
+        ]
+      }
+    ]
   },
   {
     "id": 3,
-    "word": "각축(角逐)",
-    "meaning": "서로 이기려고 다투어 덤벼듦."
-  },
-  {
-    "id": 4,
-    "word": "데시근하다",
-    "meaning": "말이나 행동이 씨가 먹지 않고 미적지근하다"
-  },
-  {
-    "id": 5,
-    "word": "도다녀오다",
-    "meaning": "갔다가 지체하지 않고 올 길을 빨리 오다"
-  },
-  {
-    "id": 6,
-    "word": "돈짝만하다",
-    "meaning": "마음이 허황되게 부풀어 세상이 조그마하게 보임을 이르는 말"
+    "word": "123",
+    "meanings": [
+      {
+        "definition": "321",
+        "examples": [
+          "232"
+        ]
+      },
+      {
+        "definition": "333",
+        "examples": [
+          "333"
+        ]
+      },
+      {
+        "definition": "444",
+        "examples": [
+          "555"
+        ]
+      }
+    ]
   }
 ]

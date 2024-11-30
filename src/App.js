@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './components/AuthContext';
 
+import Chatbot from 'react-chatbot-kit';
 import Sidebar from './components/Sidebar';
 import WordLearningPage from './components/WordLearningPage';
 import VocabularyPage from './components/VocabularyPage';
@@ -14,6 +15,7 @@ import './App.css';
 
 const App = () => {
   const [showChatBot, setShowChatBot] = useState(false);
+  const [chatbotInput, setChatbotInput] = useState('');
 
   const toggleChatBot = () => {
     setShowChatBot(!showChatBot);
@@ -21,9 +23,7 @@ const App = () => {
 
   return (
     <div className="app">
-      
-      
-      
+
       <Sidebar toggleChatBot={toggleChatBot} showChatBot={showChatBot} />
       
 

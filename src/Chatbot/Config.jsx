@@ -19,6 +19,7 @@ const config = {
   initialMessages: [
     createChatBotMessage("안녕하세요! 단어 학습을 시작하려면 '시작'이라고 입력해주세요."),
   ],
+  
   botName: "ScenarioBot",
   customStyles: {
     botMessageBox: {
