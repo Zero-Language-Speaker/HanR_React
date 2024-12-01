@@ -134,6 +134,12 @@
     font-style: italic;
   }
 
+  .word-info-container{
+    overflow-y: auto;
+    height: 100%;
+    width: 100%;
+  }
+
   .word-info {
     position: relative;
     margin-top: 20px;
