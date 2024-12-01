@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { expressAxios } from '../customAxios';
 import './SentencePage.css';
 
 const SentencePage = () => {
@@ -19,7 +20,7 @@ const SentencePage = () => {
   const fetchSentences = async () => {
     try {
       setIsLoading(true);
-      const response = await axios.get('http://localhost:3001/api/sentences');
+      const response = await expressAxios.get('/api/sentences');
       setSentences(response.data);
       setIsLoading(false);
     } catch (err) {
@@ -32,7 +33,7 @@ const SentencePage = () => {
   const addSentence = async () => {
     if (newSentence.text && newSentence.translation) {
       try {
-        const response = await axios.post('http://localhost:3001/api/sentences', newSentence);
+        const response = await expressAxios.post('/api/sentences', newSentence);
         setSentences([...sentences, response.data]);
         setNewSentence({ text: '', translation: '' });
       } catch (err) {
@@ -71,7 +72,7 @@ const SentencePage = () => {
     if (!clickedWord) return;
   
     try {
-      const response = await axios.post('http://localhost:3001/api/words', {
+      const response = await expressAxios.post('/api/words', {
         word: clickedWord.word,
         meaning: 'Placeholder meaning'
       });

@@ -1,5 +1,6 @@
 // ActionProvider.js
 import axios from "axios";
+import { fastapiAxios } from "../customAxios";
 import React from 'react';
 import { useEffect } from "react";
 
@@ -9,10 +10,10 @@ const ActionProvider = ({ createChatBotMessage, setState, children, state}) => {
     console.log(state)
 
     try{
-      const mission = await axios.post('http://localhost:8000/api/mission', { 
+      const mission = await fastapiAxios.post('/api/mission', { 
         word: state.word, 
         meaning: state.definition,
-        mission_type: -1,
+        mission_type: -1, // -2로 오류 유도
         past_missions: [] // not used
       }).then(res => res.data.mission);
       console.log("generateMission:", mission)
@@ -36,10 +37,10 @@ const ActionProvider = ({ createChatBotMessage, setState, children, state}) => {
 
   const generateFeedback = async(message) => {
     try {
-      const feedback = await axios.post('http://localhost:8000/api/feedback', { 
+      const feedback = await fastapiAxios.post('/api/feedback', { 
         word: state.word, 
         meaning: state.definition, 
-        user_input: message,
+        user_input: message, // ""로 오류 유도
         mission: state.mission,
         mission_type: -1, // not used
       }).then(res => res.data.message);
