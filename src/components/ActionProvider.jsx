@@ -1,6 +1,5 @@
 // ActionProvider.js
-import axios from "axios";
-import { fastapiAxios } from "../customAxios";
+import { fastapiAxios, expressAxios } from "../customAxios";
 import React from 'react';
 import { useEffect } from "react";
 
@@ -8,12 +7,26 @@ const ActionProvider = ({ createChatBotMessage, setState, children, state}) => {
 
   const generateMission = async() => {
     console.log(state)
+    let randomWord = null
+
+    if (!state.word){
+      try {
+        const response = await expressAxios.get('/api/random-word');
+        console.log("randomWord:", response.data)
+        randomWord = {
+          word: response.data.word,
+          meaning: response.data.meanings[0].definition
+        }
+      } catch (error) {
+        console.error('Error fetching random word:', error);
+      }
+    }
 
     try{
       const mission = await fastapiAxios.post('/api/mission', { 
-        word: state.word, 
-        meaning: state.definition,
-        mission_type: -1, // -2로 오류 유도
+        word: state.word || randomWord.word, 
+        meaning: state.definition || randomWord.meaning,
+        mission_type: -2, // -2로 오류 유도. 기본 -1
         past_missions: [] // not used
       }).then(res => res.data.mission);
       console.log("generateMission:", mission)

@@ -25,7 +25,7 @@ import './App.css';
 const App = () => {
   const [showChatBot, setShowChatBot] = useState(false);
   const [chatbotInput, setChatbotInput] = useState('');
-  const [chatContext, setChatContext] = useState({"word": "", "definition": false});
+  const [chatContext, setChatContext] = useState({"word": "", "definition": ""});
 
   const handleStartLearningMission = (word, meaning) => {
     console.log('handleStartLearningMission called in App with word:', word, meaning);
@@ -43,6 +43,7 @@ const App = () => {
 
   const toggleChatBot = () => {
     setShowChatBot(!showChatBot);
+    setChatContext({"word": "", "definition": ""})
   };
 
   return (
