@@ -40,9 +40,23 @@ const SentencePage = () => {
       setResult(response.data)
       console.log("addWords response:", response.data)
       setIsLoading(false);
+
+      for (const item of response.data){
+        try {
+          const response = await expressAxios.post('/api/words', {
+            word: item.word,
+            meanings: [{
+              definition: item.meaning,
+              examples: item.example_sentence
+            }]
+          });
+          console.log('Word added successfully:', item.word);
+        } catch (err){
+          console.log("Failed to add word:", item.word, err)
+        }
+      }
     } catch (err) {
-      console.error('Error fetching sentences:', err);
-      setError('Failed to load sentences. Please try again later.');
+      console.error('Error addWords:', err);
       setIsLoading(false);
     }
   }
