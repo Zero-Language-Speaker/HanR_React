@@ -35,7 +35,7 @@ const ExplainPage = () => {
         word: item.word,
         meanings: [{
           definition: item.meaning,
-          examples: item.example_sentence
+          examples: [item.example_sentence]
         }]
       });
       console.log('Word added successfully:', item.word);
