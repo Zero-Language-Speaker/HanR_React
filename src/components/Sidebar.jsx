@@ -59,7 +59,12 @@ const Sidebar = ({ toggleChatBot, showChatBot }) => {
         </li>
         <li>
           <Link to="/sentences">
-            <button className="menu-button">단어 추가</button>
+            <button className="menu-button">단어 추가하기</button>
+          </Link>
+        </li>
+        <li>
+          <Link to="/explain">
+            <button className="menu-button">단어 설명하기</button>
           </Link>
         </li>
         <li>

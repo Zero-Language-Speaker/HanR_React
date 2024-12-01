@@ -17,6 +17,7 @@ import ScenarioChatBot from './components/ScenarioChatBot';
 
 import MessageParser from './components/MessageParser';
 import ActionProvider from './components/ActionProvider';
+import ExplainPage from './components/ExplainPage';
 
 import './App.css';
 // import { response } from 'express';
@@ -57,6 +58,7 @@ const App = () => {
           <Route path="/" element={<VocabularyPage />} />
           <Route path="/word-learning" element={<WordLearningPage />} />
           <Route path="/sentences" element={<SentencePage />} />
+          <Route path="/explain" element={<ExplainPage />} />
           <Route path="/word-list" element={<WordListPage onStartLearningMission={handleStartLearningMission} />} />
         </Routes>
       </main>
