@@ -26,7 +26,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children, state}) => {
       const mission = await fastapiAxios.post('/api/mission', { 
         word: state.word || randomWord.word, 
         meaning: state.definition || randomWord.meaning,
-        mission_type: -2, // -2로 오류 유도. 기본 -1
+        mission_type: -1, // -2로 오류 유도. 기본 -1
         past_missions: [] // not used
       }).then(res => res.data.mission);
       console.log("generateMission:", mission)

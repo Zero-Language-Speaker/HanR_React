@@ -25,6 +25,7 @@ const ExplainPage = () => {
       console.log("Error onClickCheck:", err)
       setIsLoading(false)
       setIsWriting(true)
+      alert("Sorry! An error occured when searching for word.")
     }
   }
 
@@ -58,6 +59,8 @@ const ExplainPage = () => {
           <button className="recommend-btn" onClick={getRandomSentence}>오늘의 추천 문장</button>
           <button className="review-btn" onClick={getRandomSentence}>오늘의 복습 문장</button>
         </div>
+
+        <h2>문맥으로 단어 검색하기</h2>
 
         <div className="sentence-display-section">
           <textarea

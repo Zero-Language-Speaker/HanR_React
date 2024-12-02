@@ -163,6 +163,8 @@ const SentencePage = () => {
           <button className="review-btn" onClick={getRandomSentence}>오늘의 복습 문장</button>
         </div>
 
+        <h2>문장에서 단어 추가하기</h2>
+
         <div className="sentence-display-section">
           {isWriting?
             <textarea
