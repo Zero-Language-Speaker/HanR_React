@@ -14,7 +14,7 @@ const SentencePage = () => {
   const [showFeedback, setShowFeedback] = useState(false);
 
   const [sentence, setSentence] = useState("그의 갑작스런 결정은 나에게 큰 혼란을 주었다.")
-  const [isWriting, setIsWriting] = useState(false)
+  const [isWriting, setIsWriting] = useState(true)
   const [selectedWords, setSelectedWords] = useState(new Set());
   const [result, setResult] = useState([])
 
@@ -55,13 +55,17 @@ const SentencePage = () => {
           console.log("Failed to add word:", item.word, err)
         }
       }
+
+      alert("All words added successfully!")
     } catch (err) {
       console.error('Error addWords:', err);
       setIsLoading(false);
+      alert("Sorry! An error occured when adding words!")
     }
   }
 
   const onClickWritingButton = () => {
+    if (isWriting) setSelectedWords(new Set());
     setIsWriting(!isWriting);
     console.log("toggle isWriting")
   }

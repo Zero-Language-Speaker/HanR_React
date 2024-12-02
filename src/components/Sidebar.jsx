@@ -44,11 +44,11 @@ const Sidebar = ({ toggleChatBot, showChatBot }) => {
 
 
       <ul className="menu-list">
-        <li>
+        {/* <li>
           <Link to="/word-learning">
             <button className="menu-button">단어 뜻 학습</button>
           </Link>
-        </li>
+        </li> */}
         <li>
         <button 
             className={`menu-button ${showChatBot ? 'active' : ''}`}
@@ -69,7 +69,7 @@ const Sidebar = ({ toggleChatBot, showChatBot }) => {
         </li>
         <li>
           <Link to="/word-list">
-            <button className="menu-button">단어장 이동</button>
+            <button className="menu-button">단어장</button>
           </Link>
         </li>
         <li>
