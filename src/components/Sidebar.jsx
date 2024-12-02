@@ -72,9 +72,6 @@ const Sidebar = ({ toggleChatBot, showChatBot }) => {
             <button className="menu-button">단어장</button>
           </Link>
         </li>
-        <li>
-          <button className="menu-button"></button>
-        </li>
       </ul>
     </aside>
   );

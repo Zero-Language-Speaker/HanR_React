@@ -77,7 +77,13 @@ const VocabularyPage = () => {
           {words.length > 0 ? (
             <div className="word-display">
               <h3>{words[currentIndex].word}</h3>
-              <p className="word-meaning blurred">{words[currentIndex].meaning}</p>
+              <ul className="word-meanings">
+                {words[currentIndex].meanings.map((meaning, index) => (
+                  <li key={index} className="word-meaning blurred">
+                    {meaning.definition}
+                  </li>
+                ))}
+              </ul>
             </div>
           ) : (
             <p>Loading...</p>

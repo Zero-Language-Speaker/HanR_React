@@ -25,3 +25,11 @@ html { /* 스크롤바 제거 */
 html::-webkit-scrollbar {
   display: none;  /* for Chrome, Safari, and Opera */
 }
+
+
+body {
+  font-size: 16px;
+  line-height: 1.625;
+  color: #202013;
+  font-family: Nunito, sans-serif;
+}
