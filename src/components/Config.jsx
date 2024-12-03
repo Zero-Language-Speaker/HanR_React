@@ -18,15 +18,7 @@ const config = (chatContext) => ({
       widgetName: "missionBtn",
       widgetFunc: (props) => <MissionBtn {...props}/>
     },
-    {
-      widgetName: "generateMission",
-      widgetFunc: (props) => props.actions.generateMission()
-    }
   ],
-  customMessages: {
-    learning_mission: (props) => <LearningMission {...props} />,
-  },
-
 
     customComponents: {
       botAvatar: (props) => (
