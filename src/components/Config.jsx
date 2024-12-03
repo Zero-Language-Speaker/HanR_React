@@ -44,7 +44,7 @@ const config = (chatContext) => ({
     botName: "ScenarioBot",
     customStyles: {
       botMessageBox: {
-        backgroundColor: "#376B7E",
+        backgroundColor: "#a6dcf2",
       },
       chatButton: {
         backgroundColor: "#5ccc9d",
