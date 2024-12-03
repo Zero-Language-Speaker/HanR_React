@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { expressAxios } from '../customAxios';
 import './VocabularyPage.css';
 
 const VocabularyPage = () => {
@@ -18,7 +19,7 @@ const VocabularyPage = () => {
     const fetchWords = async () => {
       try {
         setIsLoading(true);
-        const response = await axios.get('http://localhost:3001/api/words');
+        const response = await expressAxios.get('/api/words');
         setWords(response.data);
         setIsLoading(false);
       } catch (err) {
@@ -76,7 +77,13 @@ const VocabularyPage = () => {
           {words.length > 0 ? (
             <div className="word-display">
               <h3>{words[currentIndex].word}</h3>
-              <p className="word-meaning blurred">{words[currentIndex].meaning}</p>
+              <ul className="word-meanings">
+                {words[currentIndex].meanings.map((meaning, index) => (
+                  <li key={index} className="word-meaning blurred">
+                    {meaning.definition}
+                  </li>
+                ))}
+              </ul>
             </div>
           ) : (
             <p>Loading...</p>

@@ -5,7 +5,10 @@
     width: 80%;
     overflow-x: hidden;
   }
+
   
+
+
   .main-content {
     flex-grow: 1;
     padding: 20px;
@@ -38,6 +41,7 @@
   
   .sentence-display-section {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
@@ -49,7 +53,7 @@
     flex-grow: 1;
     background-color: #909eee;
     padding: 40px;
-    margin: 0 10px;
+
     text-align: center;
     border-radius: 12px;
     min-height: 200px;
@@ -129,9 +133,19 @@
     font-size: 1.2em;
     margin-bottom: 20px;
   }
+
+  .sentence-text, .sentence-display {
+    font-family: 'Roboto';
+  }
   
   .sentence-translation {
     font-style: italic;
+  }
+
+  .word-info-container{
+    overflow-y: auto;
+    height: 100%;
+    width: 100%;
   }
 
   .word-info {
@@ -222,6 +236,72 @@
     border-radius: 5px;
     animation: fadeIn 0.5s, fadeOut 0.5s 2.5s;
   }
+
+
+  /* Action buttons */
+.action-buttons {
+  display: flex;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.action-buttons button {
+  padding: 8px 16px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.action-buttons button:first-child {
+  background-color: #67be6a;
+  color: white;
+}
+
+.action-buttons button:last-child {
+  background-color: #67be6a;
+  color: white;
+}
+
+
+
+.sentence-text, .sentence-display {
+  background: #f0f0f0;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px #d1d1d1, -5px -5px 10px #ffffff;
+  padding: 20px;
+}
+
+.sentence-display-section {
+  transition: all 0.3s ease-in-out;
+}
+
+.sentence-text, .sentence-display {
+  transition: opacity 0.3s ease-in-out;
+}
+
+
+.clickable-word {
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.clickable-word:hover {
+  transform: scale(1.05);
+  color: #4CAF50;
+}
+
+
+
+.sentence-text::placeholder {
+  animation: placeholderWave 2s ease-in-out infinite;
+}
+
+@keyframes placeholderWave {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
   
   @keyframes fadeIn {
     from { opacity: 0; }
@@ -231,4 +311,16 @@
   @keyframes fadeOut {
     from { opacity: 1; }
     to { opacity: 0; }
+  }
+
+
+
+  .added-word {
+    animation: highlightPulse 0.5s ease-in-out;
+  }
+  
+  @keyframes highlightPulse {
+    0% { background-color: transparent; }
+    50% { background-color: rgba(76, 175, 80, 0.3); }
+    100% { background-color: transparent; }
   }

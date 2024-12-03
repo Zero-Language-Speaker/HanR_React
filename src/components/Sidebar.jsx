@@ -44,31 +44,33 @@ const Sidebar = ({ toggleChatBot, showChatBot }) => {
 
 
       <ul className="menu-list">
-        <li>
+        {/* <li>
           <Link to="/word-learning">
-            <button className="menu-button">단어 학습</button>
+            <button className="menu-button">단어 뜻 학습</button>
           </Link>
-        </li>
+        </li> */}
         <li>
         <button 
             className={`menu-button ${showChatBot ? 'active' : ''}`}
             onClick={toggleChatBot}
           >
-            챗봇 호출
+            랜덤 미션
           </button>
         </li>
         <li>
           <Link to="/sentences">
-            <button className="menu-button">문맥 학습</button>
+            <button className="menu-button">단어 추가하기</button>
+          </Link>
+        </li>
+        <li>
+          <Link to="/explain">
+            <button className="menu-button">단어 설명하기</button>
           </Link>
         </li>
         <li>
           <Link to="/word-list">
-            <button className="menu-button">단어장 이동</button>
+            <button className="menu-button">단어장</button>
           </Link>
-        </li>
-        <li>
-          <button className="menu-button"></button>
         </li>
       </ul>
     </aside>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { expressAxios } from '../customAxios';
 import './WordLearningPage.css';
 
 const WordLearningPage = () => {
@@ -13,7 +14,7 @@ const WordLearningPage = () => {
 
   const fetchRandomWord = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/api/random-word');
+      const response = await expressAxios.get('/api/random-word');
       setRandomWord(response.data);
       setError(null);
     } catch (error) {

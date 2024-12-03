@@ -6,6 +6,7 @@ import WordModal from './WordModal';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useLearningMission } from './LearningMissionContext';
 import Chatbot from 'react-chatbot-kit';
+import { expressAxios } from '../customAxios';
 
 const WordListPage = () => {
 
@@ -36,7 +37,7 @@ const WordListPage = () => {
 
   const fetchWords = async () => {
     try {
-      const response = await axios.get('/api/words');
+      const response = await expressAxios.get('/api/words');
       const sortedWords = response.data.sort((a, b) => b.id - a.id);
       setWords(sortedWords);
     } catch (error) {
@@ -55,7 +56,7 @@ const WordListPage = () => {
         await updateWord(words[existingWordIndex].id, newWord, newMeanings);
       } else {
         // New word, add it
-        const response = await axios.post('/api/words', {
+        const response = await expressAxios.post('/api/words', {
           word: newWord,
           meanings: newMeanings
         });
@@ -73,7 +74,7 @@ const WordListPage = () => {
     try {
       const existingWord = words.find(w => w.id === id);
       const updatedMeanings = [...existingWord.meanings, ...newMeanings];
-      const response = await axios.put(`/api/words/${id}`, {
+      const response = await expressAxios.put(`/api/words/${id}`, {
         word,
         meanings: updatedMeanings
       });
@@ -91,7 +92,7 @@ const WordListPage = () => {
 
   const deleteWord = async (id) => {
     try {
-      await axios.delete(`/api/words/${id}`);
+      await expressAxios.delete(`/api/words/${id}`);
       setWords(words.filter(word => word.id !== id));
     } catch (error) {
       console.error('Error deleting word:', error);

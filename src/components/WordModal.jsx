@@ -11,23 +11,25 @@ const WordModal = ({ isOpen, word, meanings, onClose, onStartLearningMission }) 
   return (
     <div className="modal-overlay">
       <div className="modal-content">
+        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+          <button onClick={onClose}>Close</button>
+        </div>
         <h2>{word}</h2>
         {meanings.map((meaning, index) => (
           <div key={index} className="meaning-section">
-            <h3>Definition {index + 1}:</h3>
+            <h3>뜻 {index + 1} :</h3>
             <p>{meaning.definition}</p>
-            <h4>Examples:</h4>
+            <h4>예문 :</h4>
             <ul>
               {meaning.examples.map((example, exIndex) => (
                 <li key={exIndex}>{example}</li>
               ))}
             </ul>
-            <button onClick={() => onStartLearningMission(word)}>
-              Start Learning Mission
+            <button onClick={() => onStartLearningMission(word, meaning)}>
+              학습 미션 시작
             </button>
           </div>
         ))}
-        <button onClick={onClose}>Close</button>
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import React, { useState, useRef } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './components/AuthContext';
 import { LearningMissionProvider } from './components/LearningMissionContext';
+import axios from 'axios';
 
 import Chatbot from 'react-chatbot-kit';
 import config from './components/Config';
@@ -16,28 +17,33 @@ import ScenarioChatBot from './components/ScenarioChatBot';
 
 import MessageParser from './components/MessageParser';
 import ActionProvider from './components/ActionProvider';
+import ExplainPage from './components/ExplainPage';
 
 import './App.css';
+// import { response } from 'express';
 
 const App = () => {
   const [showChatBot, setShowChatBot] = useState(false);
   const [chatbotInput, setChatbotInput] = useState('');
+  const [chatContext, setChatContext] = useState({"word": "", "definition": ""});
 
-  
-
-  const handleStartLearningMission = (word) => {
-    console.log('handleStartLearningMission called in App with word:', word);
+  const handleStartLearningMission = (word, meaning) => {
+    console.log('handleStartLearningMission called in App with word:', word, meaning);
     setChatbotInput(word);
+    setChatContext({"word": word, "definition": meaning.definition})
     setShowChatBot(true);
-    if (actionProviderRef.current) {
-      actionProviderRef.current.handleLearningMission(word);
-    }
-  };
 
-  const actionProviderRef = useRef();
+    // generateMission(word, meaning.definition)
+
+    // if (actionProviderRef.current) { // Ref 작동 안 하는 듯
+    //   actionProviderRef.current.handleLearningMission(word);
+    // }
+  };
+  // const actionProviderRef = useRef();
 
   const toggleChatBot = () => {
     setShowChatBot(!showChatBot);
+    setChatContext({"word": "", "definition": ""})
   };
 
   return (
@@ -53,11 +59,12 @@ const App = () => {
           <Route path="/" element={<VocabularyPage />} />
           <Route path="/word-learning" element={<WordLearningPage />} />
           <Route path="/sentences" element={<SentencePage />} />
+          <Route path="/explain" element={<ExplainPage />} />
           <Route path="/word-list" element={<WordListPage onStartLearningMission={handleStartLearningMission} />} />
         </Routes>
       </main>
 
-      {showChatBot && (<ScenarioChatBot onClose={toggleChatBot} userInput={chatbotInput}/>)}
+      {showChatBot && (<ScenarioChatBot onClose={toggleChatBot} chatContext={chatContext} userInput={chatbotInput}/>)}
     </div>
     </LearningMissionProvider>
   );
