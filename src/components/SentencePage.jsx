@@ -192,11 +192,11 @@ const SentencePage = () => {
             </div>}
           </div>
 
-      <div style={{ display: "flex", gap: "10px", margin: "10px" }}>
-          <button onClick={onClickWritingButton}>{isWriting? "확인": "수정"}</button>
-          {isWriting? "": <button onClick={addWords}>단어 추가</button>}
-      </div>
-
+          <div className="action-buttons">
+            <button onClick={onClickWritingButton}>{isWriting ? "확인" : "수정"}</button>
+            {!isWriting && <button onClick={addWords}>단어 추가</button>}
+          </div>
+          
       <div className='word-info-container'>
           {isLoading ? <div className="word-info" style={{textAlign: "center"}}>Loading...</div> : result.map((item)=>
           <div className="word-info">

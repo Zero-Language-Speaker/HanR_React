@@ -38,6 +38,7 @@
   .scenario-chatbot-header button {
     background: none;
     border: none;
+    background-color: #6871a7;
     font-size: 20px;
     cursor: pointer;
   }
