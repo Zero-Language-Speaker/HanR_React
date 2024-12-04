@@ -7,7 +7,7 @@ export default function MissionBtn(props) {
     }
 
     return (
-        <div>
+        <div className="mission-btn-container">
             <button className="mission-btn" onClick={() => generateMission()}>Next Mission</button>
         </div>
     )
