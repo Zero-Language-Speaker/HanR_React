@@ -61,9 +61,11 @@ const ActionProvider = ({ createChatBotMessage, setState, children, state}) => {
       const botMessage = createChatBotMessage(
         <div>
           <h3>피드백</h3>
-          {feedback.split("\n").map((line, idx)=> (line.includes("활용:") || line.includes("팁:"))? <p>{line}</p>: null)}
+          <p>{feedback.feedback}</p>
+          {feedback.improvement ? <p><b>이런 표현은 어떤가요?</b><br />{feedback.improvement}</p> : null}
+          {feedback.tip ? <p><b>추가 팁!</b><br />{feedback.tip}</p> : null}
         </div>
-        ,{
+        , {
           widget: "missionBtn"
         });
       updateMessages(botMessage);

@@ -13,7 +13,7 @@ const SentencePage = () => {
   const [addedWords, setAddedWords] = useState(new Set());
   const [showFeedback, setShowFeedback] = useState(false);
 
-  const [sentence, setSentence] = useState("그의 갑작스런 결정은 나에게 큰 혼란을 주었다.")
+  const [sentence, setSentence] = useState("")
   const [isWriting, setIsWriting] = useState(true)
   const [selectedWords, setSelectedWords] = useState(new Set());
   const [result, setResult] = useState([])
@@ -56,7 +56,7 @@ const SentencePage = () => {
         }
       }
 
-      alert("All words added successfully!")
+      // alert("All words added successfully!")
     } catch (err) {
       console.error('Error addWords:', err);
       setIsLoading(false);
