@@ -31,11 +31,17 @@ const ActionProvider = ({ createChatBotMessage, setState, children, state}) => {
       }).then(res => res.data.mission);
       console.log("generateMission:", mission)
 
+      
+
       const botMessage = createChatBotMessage(
         <div>
+          {state.word? null : <div style={{color: 'black'}}>단어: <b>{randomWord.word}</b></div>}
           <h3>미션</h3>
           <p>{mission}</p>
         </div>
+        , {
+          withAvatar: true
+        }
       );
       updateMessages(botMessage);
       setState((prev) => ({

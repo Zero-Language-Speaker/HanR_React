@@ -5,7 +5,11 @@ import LearningMission from "./LearningMission";
 import MissionBtn from "./MissionBtn";
 
 const config = (chatContext) => ({
-  initialMessages: [],
+  initialMessages: [createChatBotMessage(
+    chatContext.word ?
+    <div style={{color: 'black'}}>단어 <b>{chatContext.word}</b>에 대한 미션을 생성하고 있어요...</div> :
+    <div style={{color: 'black'}}>랜덤 단어에 대한 미션을 생성하고 있어요...</div>
+    )],
   
   state: {
     currentMission: null,
